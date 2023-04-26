@@ -1,7 +1,16 @@
+import styled from "styled-components";
+import PlayersList from "@/components/PlayersList";
 export default function HomePage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <StyledWrapper>
+      <PlayersList />
+    </StyledWrapper>
   );
 }
+
+
+const StyledWrapper = styled.div`
+  margin: 0 auto;
+  padding: 0 10px;
+`;
+
