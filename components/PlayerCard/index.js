@@ -20,6 +20,7 @@ export default function PlayerCard({ player }) {
 
 const StyledCard = styled.div`
   width: 100%;
+  height: 100%;
   background: #3A4A57;
   border-radius: 10px;
   color: #C6C3C3;
