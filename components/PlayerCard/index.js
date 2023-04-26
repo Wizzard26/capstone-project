@@ -3,24 +3,23 @@ import styled from "styled-components";
 export default function PlayerCard({ player }) {
   return (
     <StyledCard>
-      <Image src="/img/players/darts-player.jpg" alt={player.name} width="150" height="150" />
+      <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={150} height={150} />
       <h2>{player.name}</h2>
       <h3>&quot;{player.nickname}&quot;</h3>
-      <div className="player-info">
-        <span className="player-info-label">HT:</span>
-        <span className="player-info-text">{player.hometown}</span>
+      <div>
+        <StyledPlayerLabel>HT:</StyledPlayerLabel>
+        <span>{player.hometown}</span>
       </div>
-      <div className="player-info">
-        <span className="player-info-label">WR:</span>
-        <span className="player-info-text">{player.worldRanking}</span>
+      <div>
+        <StyledPlayerLabel>WR:</StyledPlayerLabel>
+        <span>{player.worldRanking}</span>
       </div>
     </StyledCard>
   )
 }
 
 const StyledCard = styled.div`
-  width: 48%;
-  max-width: 250px;
+  width: 100%;
   background: #3A4A57;
   border-radius: 10px;
   color: #C6C3C3;
@@ -50,11 +49,12 @@ const StyledCard = styled.div`
     margin: 0 0 15px;
   }
   
-  h2, .player-info-label {
+  h2 {
     color: #EBEBEB;
   }
+`;
 
-  .player-info-label {
-    padding-right: 10px;
-  }
+const StyledPlayerLabel = styled.span`
+  color: #EBEBEB;
+  padding-right: 10px;
 `;

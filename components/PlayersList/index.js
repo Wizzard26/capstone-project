@@ -8,20 +8,26 @@ export default function PlayersList() {
       <h1>Players overview</h1>
       <StyledPlayersList>
         {players.map((player)=>(
-          <PlayerCard
-            key={player.slug}
-            player={player} />
+          <StyledListItems key={player.slug}>
+            <PlayerCard player={player} />
+          </StyledListItems>
         ))}
       </StyledPlayersList>
     </>
   )
 }
 
-const StyledPlayersList = styled.div`
+const StyledPlayersList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px 4%;
   justify-content: center;
   padding: 0 0 20px;
+  list-style: none;
+`;
+
+const StyledListItems = styled.li`
+  width: 48%;
+  max-width: 250px;
 `;
