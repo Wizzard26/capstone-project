@@ -4,7 +4,7 @@ export default function PlayerCard({ player }) {
   return (
     <StyledCard>
       <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={150} height={150} />
-      <h2>{player.name}</h2>
+      <h2>{player.firstname} {player.lastname}</h2>
       <h3>&quot;{player.nickname}&quot;</h3>
       <div>
         <StyledPlayerLabel>HT:</StyledPlayerLabel>
