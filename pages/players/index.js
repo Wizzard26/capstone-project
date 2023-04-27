@@ -18,10 +18,10 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: #f1f1f1;
+  color: #E29B17;
   text-decoration: none;
   
   &:hover {
-    color: orange;
+    color: #f2f2f2;
   }
 `;
