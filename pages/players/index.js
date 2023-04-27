@@ -14,7 +14,7 @@ export default function Players() {
 
 const StyledWrapper = styled.div`
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 10px 20px;
 `;
 
 const StyledLink = styled(Link)`
