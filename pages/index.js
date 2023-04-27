@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import PlayersList from "@/components/PlayersList";
+
 export default function HomePage() {
   return (
     <StyledWrapper>
-      <PlayersList />
+
     </StyledWrapper>
   );
 }
