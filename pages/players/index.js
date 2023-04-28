@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import PlayersList from "@/components/PlayersList";
-import Link from "next/link";
+import { StyledLink } from "@/components/StyledLink";
 
 export default function Players() {
   return (
     <StyledWrapper>
       <PlayersList />
-      <StyledLink href="/">Back to Home</StyledLink>
+      <StyledLink variant="btn-secondary" href="/">Back to Home</StyledLink>
     </StyledWrapper>
 
   );
@@ -15,13 +15,4 @@ export default function Players() {
 const StyledWrapper = styled.div`
   margin: 0 auto;
   padding: 0 10px 20px;
-`;
-
-const StyledLink = styled(Link)`
-  color: #E29B17;
-  text-decoration: none;
-  
-  &:hover {
-    color: #f2f2f2;
-  }
 `;

@@ -2,7 +2,7 @@ import { players } from "@/lib/data";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
+import { StyledLink } from "@/components/StyledLink";
 export default function Player() {
 
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function Player() {
         <span>Darts:</span><span>{data.darts}</span>
       </StyledTable>
       <h2>Titles and Achievements</h2>
-      <StyledLink href="/players">Back to Players</StyledLink>
+      <StyledLink variant="btn-secondary" href="/players">Back to Players</StyledLink>
     </StyledWrapper>
   )
 }
@@ -63,13 +63,4 @@ const StyledImage = styled(Image)`
   display: flex;
   align-self: center;
   border-radius: 50%;
-`;
-
-const StyledLink = styled(Link)`
-  color: #E29B17;
-  text-decoration: none;
-  
-  &:hover {
-    color: #f2f2f2;
-  }
 `;
