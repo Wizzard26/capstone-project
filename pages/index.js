@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
-import { pageContent } from "../lib/data";
-import Link from "next/link";
+import { pageContent } from "@/lib/data";
+import { StyledLink } from "@/components/StyledLink";
 
 export default function HomePage() {
   const content = pageContent.find((page) => page.name === "Home" );
@@ -12,7 +12,7 @@ export default function HomePage() {
       <h1>{content.headline}</h1>
       <h2>{content.subline}</h2>
       <p>{content.teaserText}</p>
-      <StyledLink href="/players">Show all Players</StyledLink>
+      <StyledLink variant={'btn-primary'} href="/players">Show all Players</StyledLink>
     </StyledWrapper>
   );
 }
@@ -27,13 +27,4 @@ const StyledImage = styled(Image)`
   width: 100vw;
   height: auto;
   margin: 0 -10px;
-`;
-
-const StyledLink = styled(Link)`
-  color: #E29B17;
-  text-decoration: none;
-  
-  &:hover {
-    color: #f2f2f2;
-  }
 `;
