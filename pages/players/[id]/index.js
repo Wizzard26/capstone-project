@@ -29,7 +29,7 @@ export default function Player() {
         <span>Darts:</span><span>{data.darts}</span>
       </StyledTable>
       <h2>Titles and Achievements</h2>
-      <StyledLink variant={'btn-secondary'} href="/players">Back to Players</StyledLink>
+      <StyledLink variant="btn-secondary" href="/players">Back to Players</StyledLink>
     </StyledWrapper>
   )
 }

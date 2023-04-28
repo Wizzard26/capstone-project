@@ -6,7 +6,7 @@ export default function Players() {
   return (
     <StyledWrapper>
       <PlayersList />
-      <StyledLink variant={'btn-secondary'} href="/">Back to Home</StyledLink>
+      <StyledLink variant="btn-secondary" href="/">Back to Home</StyledLink>
     </StyledWrapper>
 
   );

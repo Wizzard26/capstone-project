@@ -18,7 +18,7 @@ export default function PlayerCard({ player }) {
         <StyledPlayerLabel>WR:</StyledPlayerLabel>
         <span>{player.worldRanking}</span>
       </div>
-      <StyledLink variant={'btn-primary'} href={`/players/${player.id}`}>Show Details</StyledLink>
+      <StyledLink variant="btn-primary" href={`/players/${player.id}`}>Show Details</StyledLink>
     </StyledCard>
   )
 }

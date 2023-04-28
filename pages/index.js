@@ -12,7 +12,7 @@ export default function HomePage() {
       <h1>{content.headline}</h1>
       <h2>{content.subline}</h2>
       <p>{content.teaserText}</p>
-      <StyledLink variant={'btn-primary'} href="/players">Show all Players</StyledLink>
+      <StyledLink variant="btn-primary" href="/players">Show all Players</StyledLink>
     </StyledWrapper>
   );
 }
