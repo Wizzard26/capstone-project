@@ -2,9 +2,11 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import { StyledLink } from "@/components/StyledLink";
-export default function PlayerCard({ player }) {
+import FavoriteButton from "@/components/FavoriteButton";
+export default function PlayerCard({ player, onToggleFavorite, favorites }) {
   return (
     <StyledCard>
+      <FavoriteButton id={player.id} onToggleFavorite={onToggleFavorite} isFavorite={favorites.includes(player.id)} />
       <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={150} height={150} />
       <StyledTextLink href={`/players/${player.id}`}>
         <h2>{player.firstname} {player.lastname}</h2>
@@ -32,6 +34,7 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
+  position: relative;
   
   img {
     width: 100%;
