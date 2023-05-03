@@ -2,13 +2,13 @@ import styled from "styled-components";
 import PlayersList from "@/components/PlayersList";
 import { StyledLink } from "@/components/StyledLink";
 
-export default function Players() {
+export default function Players({handleToggleFavorite, favorites}) {
   return (
     <StyledWrapper>
-      <PlayersList />
+      <PlayersList handleToggleFavorite={handleToggleFavorite} favorites={favorites} />
       <StyledLink variant="btn-secondary" href="/">Back to Home</StyledLink>
+      <StyledLink variant="btn-primary" href="/players/favorites">Show Favorites</StyledLink>
     </StyledWrapper>
-
   );
 }
 
