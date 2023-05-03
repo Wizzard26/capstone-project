@@ -3,7 +3,7 @@ import PlayerCard from "@/components/PlayerCard";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
 
-export default function PlayersList({handleToggleFavorite, favorites}) {
+export default function PlayersList({onToggleFavorite, favorites}) {
   const filteredPlayers = players.filter((player) => favorites.includes(player.id));
 
   return (
@@ -12,12 +12,14 @@ export default function PlayersList({handleToggleFavorite, favorites}) {
       <StyledPlayersList>
         {filteredPlayers.map((player) => (
           <StyledListItems key={player.slug}>
-            <PlayerCard player={player} handleToggleFavorite={handleToggleFavorite} favorites={favorites} />
+            <PlayerCard player={player} onToggleFavorite={onToggleFavorite} favorites={favorites} />
           </StyledListItems>
         ))}
       </StyledPlayersList>
-      <StyledLink variant="btn-secondary" href="/">Back to Home</StyledLink>
-      <StyledLink variant="btn-primary" href="/players">Show all Players</StyledLink>
+      <StyledActions>
+        <StyledLink variant="btn-secondary" href="/">Back to Home</StyledLink>
+        <StyledLink variant="btn-primary" href="/players">Show all Players</StyledLink>
+      </StyledActions>
     </>
   )
 }
@@ -35,4 +37,9 @@ const StyledPlayersList = styled.ul`
 const StyledListItems = styled.li`
   width: 48%;
   max-width: 250px;
+`;
+
+const StyledActions = styled.div`
+  display: flex;
+  gap: 1.25rem;
 `;

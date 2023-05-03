@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} favorites={favorites} handleToggleFavorite={handleToggleFavorite} />
+      <Component {...pageProps} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
     </>
   );
 }

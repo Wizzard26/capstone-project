@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function FavoriteButton ({ id, handleToggleFavorite, isFavorite }) {
+export default function FavoriteButton ({ id, onToggleFavorite, isFavorite }) {
   return (
     <StyledFavorite
       id={id}
-      onClick={() => {handleToggleFavorite(id);}}
+      onClick={() => onToggleFavorite(id)}
     >
       {isFavorite ?
         <svg id="Bookmarked" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">

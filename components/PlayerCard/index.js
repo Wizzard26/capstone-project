@@ -3,12 +3,10 @@ import styled from "styled-components";
 import Link from "next/link";
 import { StyledLink } from "@/components/StyledLink";
 import FavoriteButton from "@/components/FavoriteButton";
-
-
-export default function PlayerCard({ player, handleToggleFavorite, favorites }) {
+export default function PlayerCard({ player, onToggleFavorite, favorites }) {
   return (
     <StyledCard>
-      <FavoriteButton id={player.id} handleToggleFavorite={handleToggleFavorite} isFavorite={!!favorites.includes(player.id)} />
+      <FavoriteButton id={player.id} onToggleFavorite={onToggleFavorite} isFavorite={favorites.includes(player.id)} />
       <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={150} height={150} />
       <StyledTextLink href={`/players/${player.id}`}>
         <h2>{player.firstname} {player.lastname}</h2>

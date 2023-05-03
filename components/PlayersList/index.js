@@ -2,14 +2,14 @@ import { players } from "@/lib/data";
 import PlayerCard from "@/components/PlayerCard";
 import styled from "styled-components";
 
-export default function PlayersList({handleToggleFavorite, favorites}) {
+export default function PlayersList({onToggleFavorite, favorites}) {
   return (
     <>
       <h1>Players overview</h1>
       <StyledPlayersList>
         {players.map((player)=>(
           <StyledListItems key={player.slug}>
-            <PlayerCard player={player} handleToggleFavorite={handleToggleFavorite} favorites={favorites}/>
+            <PlayerCard player={player} onToggleFavorite={onToggleFavorite} favorites={favorites}/>
           </StyledListItems>
         ))}
       </StyledPlayersList>
