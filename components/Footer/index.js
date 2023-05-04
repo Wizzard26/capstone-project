@@ -28,6 +28,7 @@ const StyledFooter = styled.footer`
   display: flex;
   align-items: center;
   gap: 2px;
+  z-index: 10;
 `;
 
 const StyledFooterLink = styled(Link)`
