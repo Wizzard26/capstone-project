@@ -42,4 +42,48 @@ export const StyledLink = styled(Link)`
         }
       `
   }
+
+  ${({ variant }) =>
+      variant === "primary" &&
+      css `
+        color: #A7C0C6;
+
+        &:hover {
+          color: #91AAB1;
+        }
+      `
+  }
+
+  ${({ variant }) =>
+      variant === "secondary" &&
+      css `
+        color: #E29B17;
+        
+        &:hover {
+          color: #D19015;
+        }
+      `
+  }
+
+  ${({ variant }) =>
+      variant === "text-dark" &&
+      css `
+        color: #1F1F1F;
+  
+        &:hover {
+          color: #262626;
+        }
+      `
+  }
+
+  ${({ variant }) =>
+      variant === "text-light" &&
+      css `
+        color: #C6C3C3;
+  
+        &:hover {
+          color: #949393;
+        }
+      `
+  }
 `;
