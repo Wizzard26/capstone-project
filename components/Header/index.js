@@ -44,7 +44,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledLogo = styled(Link)`
-  
+  text-decoration: none;
 `;
 
 const StyledBurger = styled.button`
