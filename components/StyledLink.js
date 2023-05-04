@@ -44,8 +44,8 @@ export const StyledLink = styled(Link)`
   }
 
   ${({ variant }) =>
-          variant === "primary" &&
-          css `
+      variant === "primary" &&
+      css `
         color: #A7C0C6;
 
         &:hover {
@@ -55,8 +55,8 @@ export const StyledLink = styled(Link)`
   }
 
   ${({ variant }) =>
-          variant === "secondary" &&
-          css `
+      variant === "secondary" &&
+      css `
         color: #E29B17;
         
         &:hover {
@@ -66,24 +66,24 @@ export const StyledLink = styled(Link)`
   }
 
   ${({ variant }) =>
-          variant === "text-dark" &&
-          css `
-            color: #1F1F1F;
-
-            &:hover {
-              color: #262626;
-            }
-          `
+      variant === "text-dark" &&
+      css `
+        color: #1F1F1F;
+  
+        &:hover {
+          color: #262626;
+        }
+      `
   }
 
   ${({ variant }) =>
-          variant === "text-light" &&
-          css `
-            color: #C6C3C3;
-
-            &:hover {
-              color: #949393;
-            }
-          `
+      variant === "text-light" &&
+      css `
+        color: #C6C3C3;
+  
+        &:hover {
+          color: #949393;
+        }
+      `
   }
 `;
