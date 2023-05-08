@@ -20,7 +20,7 @@ async function sendRequest(url, { arg }) {
   }
 }
 
-export default function EditPage() {
+export default function EditPlayer() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
@@ -31,7 +31,7 @@ export default function EditPage() {
     sendRequest
   );
 
-  async function editPlayer(player) {
+  async function updatePlayer(player) {
     const formData = new FormData(event.target);
     const playerData = Object.fromEntries(formData);
 
@@ -44,7 +44,7 @@ export default function EditPage() {
   return (
     <StyledWrapper>
       <h1 id="edit-player">Edit Player</h1>
-      <PlayerForm onSubmit={editPlayer} formName={'edit-player'} defaultData={player}/>
+      <PlayerForm onSubmit={updatePlayer} formName={'update-player'} defaultData={player}/>
       <StyledLink variant="btn-primary" href="/players">Back to Players</StyledLink>
     </StyledWrapper>
   );
