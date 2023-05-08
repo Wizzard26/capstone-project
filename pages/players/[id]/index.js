@@ -33,13 +33,13 @@ export default function Player() {
       <StyledHeadline>
         <h1>{player.firstname} {player.lastname}</h1>
         <StyledActions>
-          <StyledLink variant="btn-secondary" href={`/players/${id}/edit`}>Edit</StyledLink>
+          <StyledLink variant="btn-secondary" href={`/players/${player._id}/edit`}>Edit</StyledLink>
           <StyledButton onClick={deletePlayer} type="button" variant="delete">
             Delete
           </StyledButton>
         </StyledActions>
       </StyledHeadline>
-      <StyledImage src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={200} height={200}/>
+      <StyledImage src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.nickname} width={200} height={200}/>
       <h2>Details about {player.firstname}</h2>
       <p>{player.description}</p>
       <StyledTable>
