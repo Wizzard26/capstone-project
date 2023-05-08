@@ -3,6 +3,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { SWRConfig } from "swr";
 export default function App({ Component, pageProps }) {
   const [favorites, setFavorites] = useState([]);
   const [open, setOpen] = useState(false);
@@ -26,11 +27,23 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
-      <Header open={open} onToggle={handleToggle} />
-      <Component {...pageProps} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
-      <Footer />
-      {open && <StyledOverlay onClick={handleToggle}></StyledOverlay>}
+      <SWRConfig
+        value={{
+          fetcher: async (...args) => {
+            const response = await fetch(...args);
+            if (!response.ok) {
+              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+            }
+            return await response.json();
+          },
+        }}
+      >
+        <GlobalStyle />
+        <Header open={open} onToggle={handleToggle} />
+        <Component {...pageProps} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
+        <Footer />
+        {open && <StyledOverlay onClick={handleToggle}></StyledOverlay>}
+      </SWRConfig>
     </>
   );
 }

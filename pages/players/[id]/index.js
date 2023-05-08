@@ -1,32 +1,54 @@
-import { players } from "@/lib/data";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
+import { StyledButton } from "@/components/StyledButton";
+import useSWR from 'swr';
+
 export default function Player() {
 
   const router = useRouter();
+  const { isReady } = router;
   const { id } = router.query;
 
-  if (!router.query.id) {
-    return <div>Loading...</div>
+  const { data: player, isLoading, error } = useSWR(`/api/players/${id}`);
+
+  if (!isReady || isLoading || error) return <h2>Loading...</h2>;
+
+  async function deletePlayer() {
+    try {
+      const response = await fetch(`/api/players/${id}`, {
+        method: "DELETE",
+      });
+      !response.ok ? console.error(response.error) : router.push("/")
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  const data = players.find((player) => player.id.toString() === id );
+
 
   return (
     <StyledWrapper>
-      <h1>{data.firstname} {data.lastname}</h1>
-      <StyledImage src={data.image ? data.image : "/img/players/darts-player.jpg"} alt={data.name} width={200} height={200}/>
-      <h2>Details about {data.firstname}</h2>
-      <p>{data.description}</p>
+      <StyledHeadline>
+        <h1>{player.firstname} {player.lastname}</h1>
+        <StyledActions>
+          <StyledLink variant="btn-secondary" href={`/players/${id}/edit`}>Edit</StyledLink>
+          <StyledButton onClick={deletePlayer} type="button" variant="delete">
+            Delete
+          </StyledButton>
+        </StyledActions>
+      </StyledHeadline>
+      <StyledImage src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={200} height={200}/>
+      <h2>Details about {player.firstname}</h2>
+      <p>{player.description}</p>
       <StyledTable>
-        <span>Nickname:</span><span>{data.nickname}</span>
-        <span>Birthday:</span><span>{data.birthday}</span>
-        <span>Nationality:</span><span>{data.nationality}</span>
-        <span>Hometown:</span><span>{data.hometown}</span>
-        <span>Handiness:</span><span>{data.handiness}</span>
-        <span>Darts:</span><span>{data.darts}</span>
+        <span>Nickname:</span><span>{player.nickname}</span>
+        <span>Birthday:</span><span>{player.birthday}</span>
+        <span>Nationality:</span><span>{player.nationality}</span>
+        <span>Hometown:</span><span>{player.city}</span>
+        <span>Handiness:</span><span>{player.handiness}</span>
+        <span>Darts:</span><span>{player.darts}</span>
       </StyledTable>
       <h2>Titles and Achievements</h2>
       <StyledLink variant="btn-secondary" href="/players">Back to Players</StyledLink>
@@ -63,4 +85,20 @@ const StyledImage = styled(Image)`
   display: flex;
   align-self: center;
   border-radius: 50%;
+`;
+
+const StyledHeadline = styled.div`
+  display: flex;
+
+  h1 {
+    width: 70%;
+  }
+`;
+
+const StyledActions = styled.div`
+  width: 30%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: end;
+  gap: 10px;
 `;

@@ -1,14 +1,15 @@
-import { players } from "@/lib/data";
 import PlayerCard from "@/components/PlayerCard";
 import styled from "styled-components";
+import useSWR from "swr";
 
 export default function PlayersList({onToggleFavorite, favorites}) {
+  const { data } = useSWR('/api/players', { fallbackData: [] });
   return (
     <>
       <h1>Players overview</h1>
       <StyledPlayersList>
-        {players.map((player)=>(
-          <StyledListItems key={player.slug}>
+        {data.map((player)=>(
+          <StyledListItems key={player._id}>
             <PlayerCard player={player} onToggleFavorite={onToggleFavorite} favorites={favorites}/>
           </StyledListItems>
         ))}
