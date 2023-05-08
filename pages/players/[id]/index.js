@@ -13,6 +13,7 @@ export default function Player() {
 
   const { data: player, isLoading, error } = useSWR(`/api/players/${id}`);
 
+  console.log('PLAYER DATA', player)
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function deletePlayer() {
@@ -30,7 +31,7 @@ export default function Player() {
       <StyledHeadline>
         <h1>{player.firstname} {player.lastname}</h1>
         <StyledActions>
-          <StyledLink variant="btn-secondary" href={`/players/${player.id}/edit`}>Edit</StyledLink>
+          <StyledLink variant="btn-secondary" href={`/players/${player._id}/edit`}>Edit</StyledLink>
           <StyledButton onClick={deletePlayer} type="button" variant="delete">
             Delete
           </StyledButton>
