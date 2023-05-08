@@ -13,7 +13,6 @@ export default function Player() {
 
   const { data: player, isLoading, error } = useSWR(`/api/players/${id}`);
 
-  console.log('PLAYER DATA', player)
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
   async function deletePlayer() {
