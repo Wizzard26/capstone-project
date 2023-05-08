@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
+import useSWR from 'swr';
 import Image from "next/image";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
 import { StyledButton } from "@/components/StyledButton";
-import useSWR from 'swr';
 
 export default function Player() {
 
@@ -30,7 +30,7 @@ export default function Player() {
       <StyledHeadline>
         <h1>{player.firstname} {player.lastname}</h1>
         <StyledActions>
-          <StyledLink variant="btn-secondary" href={`/players/${id}/edit`}>Edit</StyledLink>
+          <StyledLink variant="btn-secondary" href={`/players/${player.id}/edit`}>Edit</StyledLink>
           <StyledButton onClick={deletePlayer} type="button" variant="delete">
             Delete
           </StyledButton>
