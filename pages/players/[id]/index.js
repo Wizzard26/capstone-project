@@ -25,15 +25,12 @@ export default function Player() {
       console.error(error);
     }
   }
-
-
-
   return (
     <StyledWrapper>
       <StyledHeadline>
         <h1>{player.firstname} {player.lastname}</h1>
         <StyledActions>
-          <StyledLink variant="btn-secondary" href={`/players/${player._id}/edit`}>Edit</StyledLink>
+          <StyledLink variant="btn-secondary" href={`/players/${id}/edit`}>Edit</StyledLink>
           <StyledButton onClick={deletePlayer} type="button" variant="delete">
             Delete
           </StyledButton>
