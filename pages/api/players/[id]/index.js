@@ -6,11 +6,16 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const player = await Player.findById(id)
-    if (!player) {
-      return response.status(404).json({ status: 'Not found' })
+    try {
+      const player = await Player.findById(id)
+      if (!player) {
+        return response.status(404).json({ status: 'Not found' })
+      }
+      response.status(200).json(player)
+    } catch {
+      return response.status(400).json({ error: error.message});
     }
-    response.status(200).json(player)
+
   }
 
   if (request.method === "PATCH") {
