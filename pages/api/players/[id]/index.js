@@ -14,7 +14,7 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "PATCH") {
-    await Player.findByIdAndUpdate({ _id: id }, {
+    await Player.findOneAndUpdate({ _id: id }, {
       $set: request.body,
     });
 

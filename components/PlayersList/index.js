@@ -4,6 +4,7 @@ import useSWR from "swr";
 
 export default function PlayersList({onToggleFavorite, favorites}) {
   const { data } = useSWR('/api/players', { fallbackData: [] });
+
   return (
     <>
       <h1>Players overview</h1>
