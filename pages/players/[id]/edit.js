@@ -25,7 +25,7 @@ export default function EditPlayer() {
   const { isReady } = router;
   const { id } = router.query;
 
-  const { data: player, isLoading, error} = useSWR(id ? `/api/players/${id}` : undefined);
+  const { data: player, isLoading, error} = useSWR(id ? `/api/players/${id}` : null);
 
   const { trigger, isMutation } = useSWRMutation(
     `/api/players/${id}`,
