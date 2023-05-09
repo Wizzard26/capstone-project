@@ -6,9 +6,9 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
-    const player = await Player.findOne({ _id: id })
+    const player = await Player.findOne({ _id: id });
     if (!player) {
-      return response.status(404).json({ status: 'Not found' })
+      return response.status(404).json({ status: 'Not found', message: `Player with ${id} not found.` })
     }
     return response.status(200).json(player)
   }
