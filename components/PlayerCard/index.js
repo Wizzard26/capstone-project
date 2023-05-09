@@ -4,23 +4,24 @@ import Link from "next/link";
 import { StyledLink } from "@/components/StyledLink";
 import FavoriteButton from "@/components/FavoriteButton";
 export default function PlayerCard({ player, onToggleFavorite, favorites }) {
+
   return (
     <StyledCard>
-      <FavoriteButton id={player.id} onToggleFavorite={onToggleFavorite} isFavorite={favorites.includes(player.id)} />
-      <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.name} width={150} height={150} />
-      <StyledTextLink href={`/players/${player.id}`}>
+      <FavoriteButton id={player._id} onToggleFavorite={onToggleFavorite} isFavorite={favorites.includes(player._id)} />
+      <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.nickname} width={150} height={150} />
+      <StyledTextLink href={`/players/${player._id}`}>
         <h2>{player.firstname} {player.lastname}</h2>
         <h3>&quot;{player.nickname}&quot;</h3>
       </StyledTextLink>
       <div>
         <StyledPlayerLabel>HT:</StyledPlayerLabel>
-        <span>{player.hometown}</span>
+        <span>{player.city}</span>
       </div>
       <div>
         <StyledPlayerLabel>WR:</StyledPlayerLabel>
         <span>{player.worldRanking}</span>
       </div>
-      <StyledLink variant="btn-primary" href={`/players/${player.id}`}>Show Details</StyledLink>
+      <StyledLink variant="btn-primary" href={`/players/${player._id}`}>Show Details</StyledLink>
     </StyledCard>
   )
 }

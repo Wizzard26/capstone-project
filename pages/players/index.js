@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import PlayersList from "@/components/PlayersList";
+import { StyledLink } from "@/components/StyledLink";
 
 export default function Players({onToggleFavorite, favorites}) {
   return (
     <StyledWrapper>
       <PlayersList onToggleFavorite={onToggleFavorite} favorites={favorites} />
+      <StyledLink variant="btn-secondary" href="/players/create">Add a new player</StyledLink>
     </StyledWrapper>
   );
 }
