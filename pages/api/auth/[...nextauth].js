@@ -41,7 +41,7 @@ export default NextAuth({
     }
   },
   secret: "secret",
-  //database: process.env.MONGODB_URI,
+  database: process.env.MONGODB_URI,
 })
 
 const signInUser = async({password, user}) => {
