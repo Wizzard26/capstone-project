@@ -10,11 +10,13 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "leaflet": "^1.9.3",
     "mongoose": "^7.1.0",
     "next": "13.3.1",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-datepicker": "^4.11.0",
     "react-dom": "18.2.0",

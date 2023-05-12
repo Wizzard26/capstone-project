@@ -23,7 +23,7 @@ export default async function handler(request, response) {
 
   if (request.method === "DELETE") {
     try {
-      await Player.findByIdAndDelete({ _id: id });
+      await Player.findByIdAndDelete(id);
       return response.status(200).json({ status: "Player is deleted" });
     } catch (error) {
       return response.status(400).json({ status: error.message });

@@ -4,7 +4,9 @@ import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { SWRConfig } from "swr";
-export default function App({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react";
+
+export default function App({ Component, pageProps: { session, ...pageProps }, }) {
   const [favorites, setFavorites] = useState([]);
   const [open, setOpen] = useState(false);
 
@@ -27,23 +29,25 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <SWRConfig
-        value={{
-          fetcher: async (...args) => {
-            const response = await fetch(...args);
-            if (!response.ok) {
-              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-            }
-            return await response.json();
-          },
-        }}
-      >
-        <GlobalStyle />
-        <Header open={open} onToggle={handleToggle} />
-        <Component {...pageProps} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
-        <Footer />
-        {open && <StyledOverlay onClick={handleToggle}></StyledOverlay>}
-      </SWRConfig>
+      <SessionProvider session={ session }>
+        <SWRConfig
+          value={{
+            fetcher: async (...args) => {
+              const response = await fetch(...args);
+              if (!response.ok) {
+                throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+              }
+              return await response.json();
+            },
+          }}
+        >
+          <GlobalStyle />
+          <Header open={open} onToggle={handleToggle} />
+          <Component {...pageProps} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
+          <Footer />
+          {open && <StyledOverlay onClick={handleToggle}></StyledOverlay>}
+        </SWRConfig>
+      </SessionProvider>
     </>
   );
 }

@@ -4,9 +4,10 @@ import Image from "next/image";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
 import { StyledButton } from "@/components/StyledButton";
+import { useSession } from "next-auth/react";
 
 export default function Player() {
-
+  const { data: session } = useSession();
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
@@ -29,12 +30,14 @@ export default function Player() {
     <StyledWrapper>
       <StyledHeadline>
         <h1>{player.firstname} {player.lastname}</h1>
-        <StyledActions>
-          <StyledLink variant="btn-secondary" href={`/players/${player._id}/edit`}>Edit</StyledLink>
-          <StyledButton onClick={deletePlayer} type="button" variant="delete">
-            Delete
-          </StyledButton>
+        {session &&
+          <StyledActions>
+            <StyledLink variant="btn-secondary" href={`/players/${player._id}/edit`}>Edit</StyledLink>
+            <StyledButton onClick={deletePlayer} type="button" variant="delete">
+              Delete
+            </StyledButton>
         </StyledActions>
+        }
       </StyledHeadline>
       <StyledImage src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.nickname} width={200} height={200}/>
       <h2>Details about {player.firstname}</h2>
