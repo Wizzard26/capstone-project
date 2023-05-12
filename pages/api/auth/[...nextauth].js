@@ -4,7 +4,11 @@ import dbConnect from "@/db/connect";
 import User from "@/db/models/user";
 import bcrypt from "bcryptjs";
 
-dbConnect();
+const initializeDb = async () => {
+  const db = await dbConnect();
+  return db;
+};
+
 export default NextAuth({
   session: {
     jwt: true
@@ -17,6 +21,7 @@ export default NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+        const db = await initializeDb();
         const email = credentials.email;
         const password = credentials.password;
         const user = await User.findOne({ email })
