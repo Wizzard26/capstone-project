@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { StyledLink } from "@/components/StyledLink";
+import UserAction from "@/components/UserAction";
+
 export default function Header({ open, onToggle }) {
 
   return (
@@ -12,6 +14,7 @@ export default function Header({ open, onToggle }) {
   CONNECT" transform="translate(0 16)" fill="#c6c3c3" fontSize="16" fontFamily="HelveticaNeue-Medium, Helvetica Neue" fontWeight="500"><tspan x="0" y="0">DARTS</tspan><tspan x="0" y="12">CONNECT</tspan></text>
           </svg>
         </StyledLogo>
+        <UserAction />
         <StyledNavigation isOpen={open}>
           <StyledList>
             <StyledLink variant={'text-dark'} href={'/players'} onClick={onToggle}>Show Players</StyledLink>

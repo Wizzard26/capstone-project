@@ -2,8 +2,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import { pageContent } from "@/lib/data";
 import { StyledLink } from "@/components/StyledLink";
+import { useSession } from "next-auth/react";
 
 export default function HomePage() {
+  const { data: session } = useSession();
   const content = pageContent.find((page) => page.name === "Home" );
 
   return (
@@ -12,7 +14,9 @@ export default function HomePage() {
       <h1>{content.headline}</h1>
       <h2>{content.subline}</h2>
       <p>{content.teaserText}</p>
-      <StyledLink variant="btn-primary" href="/players">Show all Players</StyledLink>
+      {!session &&
+        <StyledLink variant="btn-primary" href="/auth">Sign In</StyledLink>
+      }
     </StyledWrapper>
   );
 }
