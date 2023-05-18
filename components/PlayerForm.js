@@ -122,7 +122,7 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
         name="playerImage"
         type="hidden"
         onChange={handleFileChange}
-        value={imageUrl ? imageUrl : defaultData.playerImage}
+        value={imageUrl ? imageUrl : defaultData?.playerImage}
       />
       <label htmlFor="firstname">First Name:</label>
       <StyledInput
