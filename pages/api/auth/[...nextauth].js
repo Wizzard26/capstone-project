@@ -20,8 +20,12 @@ export default NextAuth({
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" }
       },
+      profile(profile) {
+        return { role: profile.role ?? "user" }
+      },
       async authorize(credentials, req) {
-        const db = await initializeDb();
+        // const db = await initializeDb();
+        await initializeDb();
         const email = credentials.email;
         const password = credentials.password;
         const user = await User.findOne({ email })
@@ -39,9 +43,14 @@ export default NextAuth({
     signIn: "/auth"
   },
   callbacks: {
+    jwt({ token, user }) {
+      if(user) token.role = user.role
+      return token
+    },
     async session({ session, token, user}) {
       session.accessToken = token.accessToken
       session.user.id = token.id
+      session.user.role = token.role
       return session
     }
   },

@@ -25,5 +25,7 @@ export const StyledButton = styled.button`
       }
     `
   }
+
+  max-width: ${({ width }) => width }px
   
 `;

@@ -3,6 +3,7 @@ import { StyledButton } from "@/components/StyledButton";
 import DatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import Image from 'next/image';
 
 export default function PlayerForm({ onSubmit, formName, defaultData }) {
   const [startDate, setStartDate] = useState(new Date());
@@ -13,6 +14,13 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
     street: "",
     streetnumber: ""
   });
+
+  const [imageUrl, setImageUrl] = useState('');
+  const [image, setImage] = useState(null);
+  const [imageValue, setImageValue] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState(null);
+
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -46,8 +54,76 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
     fetchAddressInfos(name, value);
   }
 
+  // Cloudinary Upload handler
+
+  function handleFileChange(event) {
+    const file = event.target.files[0];
+    setImage(file);
+    setImageValue(event.target.value);
+  }
+
+  async function handleFileUpload(event) {
+    event.preventDefault();
+    setIsUploading(true);
+
+    const formData = new FormData();
+
+    formData.append('file', image);
+    formData.append('upload_preset', process.env.NEXT_PUBLIC_UPLOAD_PRESET);
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDNAME}/upload`,
+        {
+          method: 'POST',
+          body: formData,
+        }
+      );
+      const json = await response.json();
+      const secureUrl = json.secure_url;
+
+      setUploadedImage(json);
+
+      setImageUrl(secureUrl)
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsUploading(false);
+      setImage(null);
+      setImageValue('');
+    }
+  }
+
   return (
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
+      <label htmlFor="playerImage">Player Image:</label>
+      <StyledImageWrapper>
+        <StyledImagePrev src={imageUrl ? imageUrl : defaultData.playerImage} width={150} height={150} alt="" />
+        {image && (
+          <Image
+            src={URL.createObjectURL(image)}
+            width={150}
+            height={150}
+            alt="Preview Avatar"
+            style={{ objectFit: 'cover' }}
+          />
+        )}
+      </StyledImageWrapper>
+      <StyledInputUpload
+        type="file"
+        id="avatar"
+        onChange={handleFileChange}
+        value={imageValue}
+      />
+      <StyledButton variant={'primary'} width={300} type="button" onClick={handleFileUpload} disabled={!image}>
+        {isUploading ? 'Uploading …' : 'Upload'}
+      </StyledButton>
+      <StyledInput
+        id="playerImage"
+        name="playerImage"
+        type="hidden"
+        onChange={handleFileChange}
+        value={imageUrl ? imageUrl : defaultData.playerImage}
+      />
       <label htmlFor="firstname">First Name:</label>
       <StyledInput
         id="firstname"
@@ -68,13 +144,6 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
         name="nickname"
         type="text"
         defaultValue={defaultData?.nickname}
-      />
-      <label htmlFor="playerImage">Player Image:</label>
-      <StyledInput
-        id="playerImage"
-        name="playerImage"
-        type="text"
-        defaultValue={defaultData?.playerImage}
       />
       <label htmlFor="birthday">Birthday:</label>
       <StyledDatePicker
@@ -226,4 +295,31 @@ const StyledAddress = styled.div`
     flex-direction: column;
     gap: 10px;
   }
+`;
+
+const StyledImageWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const StyledInputUpload = styled.input`
+  
+  &::file-selector-button {
+    border-radius: 3px;
+    background: #E29B17;
+    border: none;
+    color: #EBEBEB;
+    cursor: pointer;
+    padding: 8px 15px;
+    
+    &:hover {
+      background: #D19015;
+    }
+  }
+`;
+
+const StyledImagePrev = styled(Image)`
+  border: 2px solid #ADAFB1;
+  background-image: url('/img/players/darts-player.jpg');
+  background-size: cover;
 `;

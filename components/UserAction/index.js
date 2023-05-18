@@ -1,17 +1,42 @@
 import styled from "styled-components";
 import {useSession, signIn, signOut} from "next-auth/react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function UserAction() {
-  const { data: session } = useSession()
   const router = useRouter();
+  const { data: session } = useSession();
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    const activeUser = async (name) => {
+      try {
+        const response = await fetch(`/api/user/${name}`);
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    if (session) {
+      const name = session.user.name;
+      activeUser(name);
+    }
+  }, [session]);
 
   return (
     <>
       {session
         ?
         <StyledUserActions>
-              Hello {session.user.name}
+              Hello
+          {userData &&
+            <StyledProfile href={`/users/${userData[0]._id}`}>
+              {session.user.name}
+            </StyledProfile>
+          }
           <StyledButton onClick={()=> signOut()}>Sign Out</StyledButton>
         </StyledUserActions>
         :
@@ -44,4 +69,11 @@ const StyledButton = styled.button`
     background: #C6C3C3;
     color: #3A4A57;
   }
+`;
+
+const StyledProfile = styled(Link)`
+  text-decoration: none;
+  font-weight: bold;
+  color: #f2f2f2;
+  margin: 0 10px;
 `;

@@ -37,7 +37,7 @@ export default function EditPlayer() {
     const playerData = Object.fromEntries(formData);
 
     await trigger(playerData);
-    await router.push("/");
+    await router.push(`/players/${id}`);
   }
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
