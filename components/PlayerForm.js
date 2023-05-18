@@ -97,7 +97,7 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
     <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
       <label htmlFor="playerImage">Player Image:</label>
       <StyledImageWrapper>
-        <StyledImagePrev src={imageUrl ? imageUrl : defaultData.playerImage} width={150} height={150} alt="" />
+        <StyledImagePrev src={imageUrl ? imageUrl : defaultData?.playerImage} width={150} height={150} alt="" />
         {image && (
           <Image
             src={URL.createObjectURL(image)}
