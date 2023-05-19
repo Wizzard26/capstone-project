@@ -19,7 +19,6 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
   const [image, setImage] = useState(null);
   const [imageValue, setImageValue] = useState('');
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
 
 
   function handleSubmit(event) {
@@ -81,8 +80,6 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
       const json = await response.json();
       const secureUrl = json.secure_url;
 
-      setUploadedImage(json);
-
       setImageUrl(secureUrl)
     } catch (error) {
       console.error(error);
@@ -112,7 +109,7 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
         type="file"
         id="avatar"
         onChange={handleFileChange}
-        value={imageValue}
+        defaultValue={imageValue}
       />
       <StyledButton variant={'primary'} width={300} type="button" onClick={handleFileUpload} disabled={!image}>
         {isUploading ? 'Uploading …' : 'Upload'}
@@ -122,7 +119,7 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
         name="playerImage"
         type="hidden"
         onChange={handleFileChange}
-        value={imageUrl ? imageUrl : defaultData?.playerImage}
+        defaultValue={imageUrl ? imageUrl : defaultData?.playerImage}
       />
       <label htmlFor="firstname">First Name:</label>
       <StyledInput

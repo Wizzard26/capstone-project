@@ -8,7 +8,7 @@ export default function UserForm({ onSubmit, formName, defaultData }) {
   const [image, setImage] = useState(null);
   const [imageValue, setImageValue] = useState('');
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
+
   function handleSubmit(event) {
       event.preventDefault();
       const formData = new FormData(event.target);
@@ -40,8 +40,6 @@ export default function UserForm({ onSubmit, formName, defaultData }) {
       );
       const json = await response.json();
       const secureUrl = json.secure_url;
-
-      setUploadedImage(json);
 
       setImageUrl(secureUrl)
     } catch (error) {

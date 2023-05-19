@@ -6,7 +6,7 @@ import styled from "styled-components";
 export default function CreateNewPLayer() {
   const router = useRouter();
 
-  async function addPlayer(event) {
+  async function addPlayer(player) {
     const formData = new FormData(event.target);
     const playerData = Object.fromEntries(formData);
 
