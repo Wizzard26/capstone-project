@@ -4,6 +4,10 @@ import bcrypt from "bcryptjs";
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+  _id: {
+    type: Schema.Types.ObjectId,
+    auto: true,
+  },
   name: {
     type: String,
     required: [true, 'Please enter your name']},
@@ -17,9 +21,22 @@ const userSchema = new Schema({
     type: String,
     url: String,
   },
+  firstname: {
+    type: String,
+  },
+  lastname: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },
   role: {
     type: String,
     default: "user",
+  },
+  player: {
+    type: Schema.Types.ObjectId,
+    ref: 'Player'
   },
   createdAt: {
     type: Date,

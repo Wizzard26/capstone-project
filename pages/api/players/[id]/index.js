@@ -17,7 +17,6 @@ export default async function handler(request, response) {
     await Player.findByIdAndUpdate( id , {
       $set: request.body,
     });
-
     return response.status(200).json({ status: "Player is updated" })
   }
 

@@ -39,7 +39,7 @@ export default function Player() {
         </StyledActions>
         }
       </StyledHeadline>
-      <StyledImage src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.nickname} width={200} height={200}/>
+      <StyledImage src={player.playerImage ? player.playerImage : "/img/players/darts-player.jpg"} alt={player.firstname} width={200} height={200}/>
       <h2>Details about {player.firstname}</h2>
       <p>{player.description}</p>
       <StyledTable>

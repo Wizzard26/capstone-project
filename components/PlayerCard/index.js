@@ -8,7 +8,7 @@ export default function PlayerCard({ player, onToggleFavorite, favorites }) {
   return (
     <StyledCard>
       <FavoriteButton id={player._id} onToggleFavorite={onToggleFavorite} isFavorite={favorites.includes(player._id)} />
-      <Image src={player.image ? player.image : "/img/players/darts-player.jpg"} alt={player.nickname} width={150} height={150} />
+      <Image src={player.playerImage ? player.playerImage : "/img/players/darts-player.jpg"} alt={player.lastname} width={150} height={150} />
       <StyledTextLink href={`/players/${player._id}`}>
         <h2>{player.firstname} {player.lastname}</h2>
         <h3>&quot;{player.nickname}&quot;</h3>
