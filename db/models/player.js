@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const playerSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    auto: true,
-  },
   firstname: {
     type: String,
   },
@@ -67,7 +63,7 @@ const playerSchema = new Schema({
     type: Array
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: String,
     ref: 'User'
   }
 });
