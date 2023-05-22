@@ -1,18 +1,19 @@
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
-import { useSession } from "next-auth/react";
 import { StyledLink } from "@/components/StyledLink";
 import { StyledButton } from "@/components/StyledButton";
+import StyledWrapper from "@/components/StyledWrapper";
 import Image from "next/image";
 
 export default function User() {
+  const { data: session } = useSession();
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
+  const { data: user, isLoading, error } = useSWR(id ? `/api/users/${id}`: null);
 
-  const { data: user, isLoading, error } = useSWR(`/api/users/${id}`);
-  const { data: session } = useSession();
   let showEditButton = false;
 
   if (!isReady || isLoading || error ) return <h2>Loading...</h2>;
@@ -91,20 +92,13 @@ export default function User() {
           </StyledRowHeader>
           <StyledRow>
             <StyledCol>Player:</StyledCol>
-            <StyledCol>{user.player}</StyledCol>
+            <StyledCol>{user?.player}</StyledCol>
           </StyledRow>
         </StyledTable>
       )}
     </StyledWrapper>
   )
 }
-
-const StyledWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 10px 20px;
-  display: flex;
-  flex-direction: column;
-`;
 
 const StyledTable = styled.div`
   border: 1px solid #3A4A57;

@@ -4,6 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
 import { StyledButton } from "@/components/StyledButton";
+import StyledWrapper from "@/components/StyledWrapper";
 import { useSession } from "next-auth/react";
 
 export default function Player() {
@@ -55,13 +56,6 @@ export default function Player() {
     </StyledWrapper>
   )
 }
-
-const StyledWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 10px 20px;
-  display: flex;
-  flex-direction: column;
-`;
 
 const StyledTable = styled.div`
   width: 100%;

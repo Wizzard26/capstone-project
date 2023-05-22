@@ -1,7 +1,7 @@
-import styled from "styled-components";
 import PlayersList from "@/components/PlayersList";
 import { StyledLink } from "@/components/StyledLink";
 import { useSession } from "next-auth/react";
+import StyledWrapper from "@/components/StyledWrapper";
 
 export default function Players({onToggleFavorite, favorites}) {
   const { data: session } = useSession();
@@ -15,8 +15,3 @@ export default function Players({onToggleFavorite, favorites}) {
     </StyledWrapper>
   );
 }
-
-const StyledWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 10px 20px;
-`;
