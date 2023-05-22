@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { pageContent } from "@/lib/data";
 import { StyledLink } from "@/components/StyledLink";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { useSession } from "next-auth/react";
 
 export default function HomePage() {
@@ -20,12 +21,6 @@ export default function HomePage() {
     </StyledWrapper>
   );
 }
-
-
-const StyledWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 10px 20px;
-`;
 
 const StyledImage = styled(Image)`
   width: 100vw;

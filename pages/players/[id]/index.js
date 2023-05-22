@@ -4,7 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
 import { StyledButton } from "@/components/StyledButton";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { useSession } from "next-auth/react";
 
 export default function Player() {

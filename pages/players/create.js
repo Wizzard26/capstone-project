@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import PlayerForm from "@/components/PlayerForm";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { StyledLink } from "@/components/StyledLink";
 
 export default function CreateNewPLayer() {

@@ -2,9 +2,8 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import PlayerForm from "@/components/PlayerForm";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { StyledLink } from "@/components/StyledLink";
-import styled from "styled-components";
 
 
 async function sendRequest(url, { arg }) {

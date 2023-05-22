@@ -1,5 +1,5 @@
 import AuthForm from "@/components/Auth/AuthForm";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 export default function AuthPage() {

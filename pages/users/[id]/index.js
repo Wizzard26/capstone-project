@@ -4,7 +4,7 @@ import useSWR from "swr";
 import styled from "styled-components";
 import { StyledLink } from "@/components/StyledLink";
 import { StyledButton } from "@/components/StyledButton";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import Image from "next/image";
 
 export default function User() {

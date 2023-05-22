@@ -1,5 +1,5 @@
 import PlayerCard from "@/components/PlayerCard";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import styled from "styled-components";
 import useSWR from "swr";
 

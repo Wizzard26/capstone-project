@@ -1,7 +1,7 @@
 import PlayersList from "@/components/PlayersList";
 import { StyledLink } from "@/components/StyledLink";
 import { useSession } from "next-auth/react";
-import StyledWrapper from "@/components/StyledWrapper";
+import { StyledWrapper } from "@/components/StyledWrapper";
 
 export default function Players({onToggleFavorite, favorites}) {
   const { data: session } = useSession();
