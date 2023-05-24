@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export default  function SendMessage({ handleSubmit, handleMessageChange, message }) {
+export default function SendMessage({ handleSubmit, handleMessageChange, message }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledTextInput
