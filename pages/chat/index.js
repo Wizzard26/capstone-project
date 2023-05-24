@@ -1,13 +1,11 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect, useRef } from "react";
-import { useRouter} from "next/router";
 import Pusher from 'pusher-js';
 import { mutate } from "swr";
 import styled, { css } from "styled-components";
 import SendMessage from "@/components/Chat/SendMessage";
 
 export default function Chat() {
-  const router = useRouter();
   const messageLastRef = useRef(null)
   const [chats, setChats] = useState([]);
   const [messageToSend, setMessageToSend] = useState("");
@@ -15,12 +13,6 @@ export default function Chat() {
   const userName = session?.user.name;
 
   useEffect(() => {
-
-    if(!session) {
-      router.push('/auth');
-    }
-    Pusher.logToConsole = true;
-
     const pusher = new Pusher( process.env.NEXT_PUBLIC_PUSHER_KEY , {
       cluster: 'eu'
     });
