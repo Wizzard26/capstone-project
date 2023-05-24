@@ -69,6 +69,7 @@ const StyledCard = styled.div`
     border-radius: 50%;
     align-self: center;
     object-fit: cover;
+    aspect-ratio: 1 / 1;
   }
 
   h2 {

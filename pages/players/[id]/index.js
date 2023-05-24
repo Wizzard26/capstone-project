@@ -80,6 +80,7 @@ const StyledImage = styled(Image)`
   align-self: center;
   border-radius: 50%;
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 `;
 
 const StyledHeadline = styled.div`
