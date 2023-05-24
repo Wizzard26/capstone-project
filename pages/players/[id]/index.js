@@ -79,6 +79,7 @@ const StyledImage = styled(Image)`
   display: flex;
   align-self: center;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 const StyledHeadline = styled.div`

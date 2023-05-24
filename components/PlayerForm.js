@@ -344,4 +344,5 @@ const StyledImagePrev = styled(Image)`
   border: 2px solid #ADAFB1;
   background-image: url('/img/players/darts-player.jpg');
   background-size: cover;
+  object-fit: cover;
 `;

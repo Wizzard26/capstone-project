@@ -63,7 +63,7 @@ const StyledCard = styled.div`
   
   img {
     width: 100%;
-    height: auto;
+    height: inherit;
     max-width: 150px;
     max-height: 150px;
     border-radius: 50%;
