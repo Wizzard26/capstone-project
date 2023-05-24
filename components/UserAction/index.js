@@ -3,6 +3,7 @@ import {useSession, signIn, signOut} from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function UserAction() {
   const router = useRouter();
@@ -31,10 +32,9 @@ export default function UserAction() {
       {session
         ?
         <StyledUserActions>
-              Hello
           {userData &&
             <StyledProfile href={`/users/${userData[0]._id}`}>
-              {session.user.name}
+              <StyledImage src={userData[0].avatar} alt="" title={session.user.name} width={34} height={34} />
             </StyledProfile>
           }
           <StyledButton onClick={()=> signOut()}>Sign Out</StyledButton>
@@ -49,9 +49,11 @@ export default function UserAction() {
 }
 
 const StyledUserActions = styled.span`
-  display: inline-block;
+  display: flex;
   position: absolute;
   right: 80px;
+  top: 10px;
+  align-items: center;
 `;
 
 const StyledButton = styled.button`
@@ -76,4 +78,10 @@ const StyledProfile = styled(Link)`
   font-weight: bold;
   color: #f2f2f2;
   margin: 0 10px;
+`;
+
+const StyledImage = styled(Image)`
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #2e2e34;
 `;

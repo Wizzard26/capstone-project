@@ -1,9 +1,11 @@
+import { useSession } from "next-auth/react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { StyledLink } from "@/components/StyledLink";
 import UserAction from "@/components/UserAction";
 
 export default function Header({ open, onToggle }) {
+  const { data: session } = useSession();
 
   return (
     <StyledHeader>
@@ -19,6 +21,9 @@ export default function Header({ open, onToggle }) {
           <StyledList>
             <StyledLink variant={'text-dark'} href={'/players'} onClick={onToggle}>Show Players</StyledLink>
             <StyledLink variant={'text-dark'} href={'/players/favorites'} onClick={onToggle}>Show Favorites</StyledLink>
+            {session && (
+              <StyledLink variant={'text-dark'} href={'/chat'} onClick={onToggle}>Go to chat</StyledLink>
+            )}
           </StyledList>
         </StyledNavigation>
         <StyledBurger isOpen={open} onClick={onToggle}>
