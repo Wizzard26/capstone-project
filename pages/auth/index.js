@@ -1,5 +1,5 @@
 import AuthForm from "@/components/Auth/AuthForm";
-import styled from "styled-components";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 export default function AuthPage() {
@@ -21,8 +21,3 @@ export default function AuthPage() {
     )
   }
 }
-
-const StyledWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 10px 20px;
-`;

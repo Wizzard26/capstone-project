@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import PlayerForm from "@/components/PlayerForm";
+import { StyledWrapper } from "@/components/StyledWrapper";
 import { StyledLink } from "@/components/StyledLink";
-import styled from "styled-components";
 
 export default function CreateNewPLayer() {
   const router = useRouter();
@@ -34,8 +34,3 @@ export default function CreateNewPLayer() {
     </StyledWrapper>
   )
 }
-
-const StyledWrapper = styled.div`
-  margin: 0 auto;
-  padding: 0 10px 20px;
-`;

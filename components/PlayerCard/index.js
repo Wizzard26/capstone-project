@@ -1,9 +1,30 @@
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import { StyledLink } from "@/components/StyledLink";
 import FavoriteButton from "@/components/FavoriteButton";
 export default function PlayerCard({ player, onToggleFavorite, favorites }) {
+  const { data: session } = useSession();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const currentProfile = async (id) => {
+      try {
+        const response = await fetch(`/api/users/${id}`);
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    if (player.user) {
+      const id = player.user;
+      currentProfile(id)
+    }
+  }, [player.user]);
 
   return (
     <StyledCard>
@@ -22,6 +43,9 @@ export default function PlayerCard({ player, onToggleFavorite, favorites }) {
         <span>{player.worldRanking}</span>
       </div>
       <StyledLink variant="btn-primary" href={`/players/${player._id}`}>Show Details</StyledLink>
+      {session && player.user && session.user.name !== user?.name && (
+        <StyledLink variant="btn-secondary" href={`/chat/${session.user.name}/${user?.name}`}>Invite Chat</StyledLink>
+      )}
     </StyledCard>
   )
 }
@@ -39,10 +63,13 @@ const StyledCard = styled.div`
   
   img {
     width: 100%;
-    height: auto;
-    max-width: 180px;
+    height: inherit;
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 50%;
     align-self: center;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
   }
 
   h2 {

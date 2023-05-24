@@ -1,11 +1,13 @@
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { StyledButton } from "@/components/StyledButton";
 import DatePicker from "react-datepicker";
-import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from 'next/image';
 
 export default function PlayerForm({ onSubmit, formName, defaultData }) {
+  const { data: session } = useSession();
   const [startDate, setStartDate] = useState(new Date());
   const [addressInfos, setAddressInfos] = useState({ latitude: "", longitude: "", country: "",countryCode: "", state: "" });
   const [addressFields, setAddressFields] = useState({
@@ -19,7 +21,24 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
   const [image, setImage] = useState(null);
   const [imageValue, setImageValue] = useState('');
   const [isUploading, setIsUploading] = useState(false);
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const activeUser = async (name) => {
+      try {
+        const response = await fetch(`/api/user/${name}`);
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    if (session) {
+      const name = session.user.name;
+      activeUser(name);
+    }
+  }, [session]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,8 +71,6 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
     const { name, value } = event.target;
     fetchAddressInfos(name, value);
   }
-
-  // Cloudinary Upload handler
 
   function handleFileChange(event) {
     const file = event.target.files[0];
@@ -221,6 +238,14 @@ export default function PlayerForm({ onSubmit, formName, defaultData }) {
         name="longitude"
         value={addressInfos.longitude ? addressInfos.longitude : defaultData?.longitude}
       />
+      {user && (
+        <input
+          type="hidden"
+          name="user"
+          value={defaultData?.user ? defaultData?.user : user[0]._id}
+        />
+        )
+      }
       <label htmlFor="handiness">Handiness:</label>
       <StyledInput
         id="handiness"
@@ -319,4 +344,5 @@ const StyledImagePrev = styled(Image)`
   border: 2px solid #ADAFB1;
   background-image: url('/img/players/darts-player.jpg');
   background-size: cover;
+  object-fit: cover;
 `;
