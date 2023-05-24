@@ -43,7 +43,6 @@ export default function Chat() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    //const newMessage = event.target[0].value
 
     try {
       await fetch("/api/chat", {

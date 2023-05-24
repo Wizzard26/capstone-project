@@ -29,9 +29,6 @@ export default function Chat() {
 
     channel.bind("chatMessages", function (data) {
 
-      console.log('this is sender', data.sender);
-      console.log('this is receiver', data.receiver);
-
       if (data.sender === output && data.receiver === input || data.sender === input && data.receiver === output) {
         setChats((prevState) => [
           ...prevState,
@@ -64,7 +61,7 @@ export default function Chat() {
         body: JSON.stringify({ message: messageToSend, sender: output, receiver: input }),
       });
 
-      await mutate;
+      await mutate();
 
     } catch (error) {
       console.error("Fehler beim Senden der Nachricht:", error);
